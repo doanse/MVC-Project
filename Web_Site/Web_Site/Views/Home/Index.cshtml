@@ -9,6 +9,28 @@
     <title>Форма регистрации</title>
 </head>
 <body>
+	<table>
+		<tr class="header">
+			<td><p>Фамилия</p></td>
+			<td><p>Имя</p></td>
+			<td><p>Отчество</p></td>
+			<td><p>Телефон</p></td>
+			<td><p>Почта</p></td>
+			<td></td>
+		</tr>
+		@foreach (var b in Model)
+		{
+			<tr>
+				<td><p>@b.Surname</p></td>
+				<td><p>@b.Name</p></td>
+				<td><p>@b.Patronymic</p></td>
+				<td><p>@b.Phone</p></td>
+				<td><p>@b.EMail</p></td>
+				
+			</tr>
+		}
+	</table>
+	
 	<nav>
 		<ul class="menu">
 			<li>@Html.ActionLink("Зарегистрировать", "Create", "Home")</li>

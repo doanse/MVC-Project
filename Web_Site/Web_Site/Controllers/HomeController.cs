@@ -16,7 +16,7 @@ namespace Web_Site.Controllers
         {
 			// получаем из бд все объекты 
 			IEnumerable<User> users = db.Users;
-			return View();
+			return View(users);
         }
 
 		/// <summary>
