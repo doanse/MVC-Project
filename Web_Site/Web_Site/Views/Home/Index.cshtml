@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Web_Site.Models.User>
+@{
     Layout = null;
 }
 
@@ -8,10 +9,12 @@
     <title>Форма регистрации</title>
 </head>
 <body>
-    <div>
-        <h3>Привет мир</h3>
-       
-    </div>
+	<nav>
+		<ul class="menu">
+			<li>@Html.ActionLink("Зарегистрировать", "Create", "Home")</li>
+		</ul>
+	</nav>      
+    
 </body>
 </html>
 
