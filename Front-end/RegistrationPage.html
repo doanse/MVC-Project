@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Регистрация</title>
+	<meta charset="utf-8" />
+	<link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<h1>Регистрация</h1>
+	<hr />
+
+	<form class="registr-form" action="" method="post">
+		<div class="general-info">
+			<p>
+				<label for="surname">Фамилия</label>
+				<br />
+				<input id="surname" name="surname" required />
+			</p>
+			<p>
+				<label for="name">Имя</label>
+				<br />
+				<input id="name" name="name" required />
+			</p>
+			<p>
+				<label for="patronymic">Отчество</label>
+				<br />
+				<input id="patronymic" name="patronymic" />
+			</p>
+		</div>
+
+		<div class="additional-info">
+			<label>
+				E-mail
+				<br />
+				<input type="email" name="email" required />
+			</label>
+			<br /><br />
+			<label>
+				Телефон
+				<br />
+				<input type="tel" name="phone" />
+			</label>
+		</div>
+
+		<div class="password-info">
+			<label>
+				Пароль
+				<br />
+				<input type="password" name="password" required />
+			</label>
+			<br /><br />
+			<label>
+				Повторите пароль
+				<br />
+				<input type="password" name="repeat-password" required />
+			</label>
+		</div>
+
+		<button type="submit">Зарегистрироваться</button>
+	</form>
+</body>
+</html>
