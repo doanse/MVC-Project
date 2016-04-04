@@ -2,7 +2,6 @@
 @{
     Layout = null;
 }
-
 <html>
 <head>
     
@@ -12,28 +11,7 @@
 
 </head>
 <body>
-	<table>
-		<tr class="header">
-			<td><p>Фамилия</p></td>
-			<td><p>Имя</p></td>
-			<td><p>Отчество</p></td>
-			<td><p>Телефон</p></td>
-			<td><p>Почта</p></td>
-			<td></td>
-		</tr>
-		@foreach (var b in Model)
-		{
-			<tr>
-				<td><p>@b.Surname</p></td>
-				<td><p>@b.Name</p></td>
-				<td><p>@b.Patronymic</p></td>
-				<td><p>@b.Phone</p></td>
-				<td><p>@b.EMail</p></td>
-				
-			</tr>
-		}
-	</table>	
-	 
+		 
 	<form class="permit-form" action="" method="post">
 		<div>
 			<input type="text" name="login" placeholder="Логин" />
@@ -43,8 +21,8 @@
 			<input type="password" name="password" placeholder="Пароль" />
 			<div class="icon lock-img"></div>
 		</div>
-		<div>
-			<button type="submit">Войти</button>
+		<div>			
+			<button type="button" onclick="location.href='@Url.Action("Entrance", "Home")'">Войти</button>							
 		</div>
 		<div>					
 			@Html.ActionLink("Региcтрация", "Create", "Home", null, new { @class = "registr" })

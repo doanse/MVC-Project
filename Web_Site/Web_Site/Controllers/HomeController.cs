@@ -20,6 +20,17 @@ namespace Web_Site.Controllers
         }
 
 		/// <summary>
+		/// Вход на сайт
+		/// </summary>
+		/// <returns></returns>
+		[HttpGet]
+		public ActionResult Entrance()
+		{
+			IEnumerable<User> users = db.Users;
+			return View(users);
+		}
+
+		/// <summary>
 		/// Добавление
 		/// </summary>
 		/// <returns></returns>
