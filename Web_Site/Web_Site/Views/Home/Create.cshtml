@@ -2,33 +2,44 @@
 
 @{
 	ViewBag.Title = "Create";
-	Layout = null;
+	//Layout = null;
 }
 
-<h2>Новый пользователь</h2>
+<html>
+<head>
 
-@using (Html.BeginForm())
-{
-	@Html.LabelFor(model => model.Surname, "Фамилия")
-	<br />
-	@Html.EditorFor(model => model.Surname)
-	<br /><br />
-	@Html.LabelFor(model => model.Name, "Имя")
-	<br />
-	@Html.EditorFor(model => model.Name)
-	<br /><br />
-	@Html.LabelFor(model => model.Patronymic, "Отчество")
-	<br />
-	@Html.EditorFor(model => model.Patronymic)	
-	<br /><br />
-	@Html.LabelFor(model => model.Phone, "Телефон")
-	<br />
-	@Html.EditorFor(model => model.Phone)
-	<br /><br />
-	@Html.LabelFor(model => model.EMail, "Почта")
-	<br />
-	@Html.EditorFor(model => model.EMail)
+	<title>Регистрация</title>
+	<meta charset="utf-8" />
+	@Styles.Render("~/Content/css")
 
-	<br /><br />
-	<input type="submit" value="Зарегистрировать" />
-}
+</head>
+<body>
+	<h2>Новый пользователь</h2>
+
+	@using (Html.BeginForm())
+	{
+		@Html.LabelFor(model => model.Surname, "Фамилия")
+		<br />
+		@Html.EditorFor(model => model.Surname)
+		<br /><br />
+		@Html.LabelFor(model => model.Name, "Имя")
+		<br />
+		@Html.EditorFor(model => model.Name)
+		<br /><br />
+		@Html.LabelFor(model => model.Patronymic, "Отчество")
+		<br />
+		@Html.EditorFor(model => model.Patronymic)
+		<br /><br />
+		@Html.LabelFor(model => model.Phone, "Телефон")
+		<br />
+		@Html.EditorFor(model => model.Phone)
+		<br /><br />
+		@Html.LabelFor(model => model.EMail, "Почта")
+		<br />
+		@Html.EditorFor(model => model.EMail)
+
+		<br /><br />
+		<input type="submit" class="btn btn-primary" value="Зарегистрировать" />
+	}
+</body>
+</html>

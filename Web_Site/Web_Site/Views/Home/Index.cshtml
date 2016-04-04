@@ -5,8 +5,11 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Форма регистрации</title>
+    
+	<title>Стартовая страница</title>
+	<meta charset="utf-8" />
+	<link type="text/css" rel="stylesheet" href= "@Url.Content("~/CSS/style.css")" />
+
 </head>
 <body>
 	<table>
@@ -29,13 +32,27 @@
 				
 			</tr>
 		}
-	</table>
-	
-	<nav>
-		<ul class="menu">
-			<li>@Html.ActionLink("Зарегистрировать", "Create", "Home")</li>
-		</ul>
-	</nav>      
+	</table>	
+	 
+	<form class="permit-form" action="" method="post">
+		<div>
+			<input type="text" name="login" placeholder="Логин" />
+			<div class="icon person-img"></div>
+		</div>
+		<div>
+			<input type="password" name="password" placeholder="Пароль" />
+			<div class="icon lock-img"></div>
+		</div>
+		<div>
+			<button type="submit">Войти</button>
+		</div>
+		<div>					
+			@Html.ActionLink("Региcтрация", "Create", "Home", null, new { @class = "registr" })
+			@Html.ActionLink("Забыли пароль?", null, null, null, new { @class = "pass-forgot" })
+
+			@*<a class="pass-forgot" href="#">Забыли пароль?</a>*@
+		</div>
+	</form>    
     
 </body>
 </html>
