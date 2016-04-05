@@ -75,6 +75,10 @@
 	margin-bottom: 15px;
 }
 
+.permit-form div:last-child {
+	font-size: 0px;
+}
+
 .permit-form a {
 	display: inline-block;
 	width: 110px;
@@ -85,7 +89,8 @@
 	color: #56a8ef;
 
 	font-weight: bold;
-	font-size: 0.9em;
+	font-size: 13px;
+	/*font-size: 0.9em;*/
 }
 
 	.permit-form a:hover {
