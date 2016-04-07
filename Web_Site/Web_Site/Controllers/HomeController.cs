@@ -13,10 +13,8 @@ namespace Web_Site.Controllers
 		// создаем контекст данных
 		ContextUser db = new ContextUser();
 		public ActionResult Index()
-        {
-			// получаем из бд все объекты 
-			IEnumerable<User> users = db.Users;
-			return View(users);
+        {			
+			return View();
         }
 
 		/// <summary>
@@ -44,8 +42,7 @@ namespace Web_Site.Controllers
 		public ActionResult Create(User user)
 		{
 			db.Users.Add(user);
-			db.SaveChanges();
-
+			db.SaveChanges();			
 			return RedirectToAction("Index");
 		}
 
