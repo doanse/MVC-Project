@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC_Project.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,19 @@ namespace MVC_Project.Controllers
 {
 	public class HomeController : Controller
 	{
+		ApplicationContext db = new ApplicationContext();
 		public ActionResult Index()
 		{
 			return View();
 		}
 
-		public ActionResult About()
+		// вытаскиваю пользователей
+		[HttpGet]
+		public ActionResult Entrance()
 		{
-			ViewBag.Message = "Your application description page.";
-
-			return View();
+			IEnumerable<UserData> users = db.Users.Select(x => new UserData {Email = x.Email, Password = x.PasswordHash });
+			return View(users);
 		}
 
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
 	}
 }
