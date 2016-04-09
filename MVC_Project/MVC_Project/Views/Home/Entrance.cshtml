@@ -7,7 +7,7 @@
 <h2>Entrance</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить пользователя", "Register", "Account")
 </p>
 <table class="table">
     <tr>
@@ -35,9 +35,8 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Изменить", "Edit", "Account") |           
+            @Html.ActionLink("Удалить", "Delete", "Account")
         </td>
     </tr>
 }

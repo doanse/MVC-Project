@@ -19,7 +19,7 @@ namespace MVC_Project.Controllers
 		[HttpGet]
 		public ActionResult Entrance()
 		{
-			IEnumerable<UserData> users = db.Users.Select(x => new UserData {Email = x.Email, Password = x.PasswordHash });
+			IEnumerable<UserData> users = db.Users.Select(x => new UserData {Email = x.Email, Password = x.PasswordHash, Year = x.Year });
 			return View(users);
 		}
 
