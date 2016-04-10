@@ -15,6 +15,7 @@ namespace MVC_Project.Models
 				: base(store)
 		{
 		}
+		//Create() создает экземпляр класса ApplicationUserManager с помощью объекта контекста IOwinContext
 		public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
 												IOwinContext context)
 		{

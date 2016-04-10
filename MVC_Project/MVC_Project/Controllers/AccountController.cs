@@ -15,7 +15,7 @@ namespace MVC_Project.Controllers
 	public class AccountController : Controller
 	{
 		//РЕГИСТРАЦИЯ
-		private ApplicationUserManager UserManager
+		private ApplicationUserManager UserManager //Через него мы будем взаимодействовать с хранилищем пользователей.
 		{
 			get
 			{
@@ -23,13 +23,13 @@ namespace MVC_Project.Controllers
 			}
 		}
 
-		public ActionResult Register()
+		public ActionResult Register() // метод для регистрации
 		{
 			return View();
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> Register(RegisterModel model)
+		public async Task<ActionResult> Register(RegisterModel model) // Post-версия представляет асинхронный метод, поскольку для создания пользователя здесь используется асинхронный вызов UserManager.CreateAsync().
 		{
 			if (ModelState.IsValid)
 			{
@@ -38,7 +38,7 @@ namespace MVC_Project.Controllers
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
-					return RedirectToAction("Login", "Account");
+					return RedirectToAction("Login", "Account"); 
 				}
 				else
 				{

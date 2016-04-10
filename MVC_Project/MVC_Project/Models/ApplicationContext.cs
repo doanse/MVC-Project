@@ -6,6 +6,7 @@ using System.Web;
 
 namespace MVC_Project.Models
 {
+	//КЛАСС КОНТЕКСТА ДАННЫХ (ОН НУЖЕН ДЛЯ СВЯЗИ С БАЗОЙ)
 	public class ApplicationContext : IdentityDbContext<ApplicationUser>
 	{
 		public ApplicationContext() : base("IdentityDb") { }
