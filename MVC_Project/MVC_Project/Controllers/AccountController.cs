@@ -23,6 +23,15 @@ namespace MVC_Project.Controllers
 			}
 		}
 
+		// вытаскиваю пользователей
+		[Authorize(Roles = "Admin")]
+		[HttpGet]
+		public ActionResult Entrance()
+		{
+			//IEnumerable<UserData> users = db.Users.Select(x => new UserData {Email = x.Email, Password = x.PasswordHash, Year = x.Year });
+			return View(UserManager.Users);
+		}
+
 		public ActionResult Register() // метод для регистрации
 		{
 			return View();
@@ -38,6 +47,8 @@ namespace MVC_Project.Controllers
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
+
+				    UserManager.AddToRole(user.Id, "User");
 					return RedirectToAction("Login", "Account"); 
 				}
 				else
@@ -125,12 +136,12 @@ namespace MVC_Project.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public async Task<ActionResult> Edit()
+		public async Task<ActionResult> Edit(string id)
 		{
-			ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+			ApplicationUser user = await UserManager.FindByIdAsync(id);
 			if (user != null)
 			{
-				EditModel model = new EditModel { Year = user.Year };
+				EditModel model = new EditModel { Year = user.Year, Id = user.Id };
 				return View(model);
 			}
 			return RedirectToAction("Login", "Account");
@@ -139,7 +150,7 @@ namespace MVC_Project.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Edit(EditModel model)
 		{
-			ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+			ApplicationUser user = await UserManager.FindByIdAsync(model.Id);
 			if (user != null)
 			{
 				user.Year = model.Year;

@@ -17,7 +17,7 @@ public class RolesController : Controller
 			return HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
 		}
 	}
-
+	[Authorize(Roles = "Admin")]
 	public ActionResult Index()
 	{
 		return View(RoleManager.Roles);

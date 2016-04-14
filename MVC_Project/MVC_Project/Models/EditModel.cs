@@ -8,5 +8,6 @@ namespace MVC_Project.Models
 	public class EditModel
 	{
 		public int Year { get; set; }
+		public string Id { get; set; }
 	}
 }
