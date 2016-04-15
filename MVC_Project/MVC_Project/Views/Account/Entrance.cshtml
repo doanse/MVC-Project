@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MVC_Project.Models.ApplicationUser>
+
+@{
+	ViewBag.Title = "Entrance";
+}
+
+<h2>Entrance</h2>
+
+@if (@User.IsInRole("Admin"))
+{
+	<p>
+		@Html.ActionLink("Добавить пользователя", "Register", "Account")
+	</p>
+}
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Email)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Year)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.PasswordHash)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Email)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Year)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PasswordHash)
+			</td>
+			@if (@User.IsInRole("Admin"))
+			{
+				<td>
+					@Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+					@Html.ActionLink("Удалить", "Delete", new { id = item.Id, Name = item.UserName })
+				</td>
+			}
+			else
+			{
+				if (@User.Identity.Name == item.Email)
+				{
+					<td>
+						@Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+						@Html.ActionLink("Удалить", "Delete", new { id = item.Id, Name = item.UserName })
+					</td>
+				}
+			}
+		</tr>
+	}
+
+</table>
+

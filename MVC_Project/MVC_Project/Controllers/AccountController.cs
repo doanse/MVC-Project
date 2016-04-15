@@ -24,7 +24,7 @@ namespace MVC_Project.Controllers
 		}
 
 		// вытаскиваю пользователей
-		[Authorize(Roles = "Admin")]
+		//[Authorize(Roles = "Admin")]
 		[HttpGet]
 		public ActionResult Entrance()
 		{
@@ -48,7 +48,7 @@ namespace MVC_Project.Controllers
 				if (result.Succeeded)
 				{
 
-				    UserManager.AddToRole(user.Id, "User");
+				    UserManager.AddToRole(user.Id, "Admin");
 					return RedirectToAction("Login", "Account"); 
 				}
 				else
@@ -122,15 +122,24 @@ namespace MVC_Project.Controllers
 
 		[HttpPost]
 		[ActionName("Delete")]
-		public async Task<ActionResult> DeleteConfirmed()
-		{
-			ApplicationUser user = await UserManager.FindByEmailAsync(User.Identity.Name);
+		public async Task<ActionResult> DeleteConfirmed(string id, string name)
+		{			
+
+			ApplicationUser user = await UserManager.FindByIdAsync(id);
 			if (user != null)
 			{
 				IdentityResult result = await UserManager.DeleteAsync(user);
 				if (result.Succeeded)
 				{
-					return RedirectToAction("Logout", "Account");
+					if (name == User.Identity.Name)
+					{
+						return RedirectToAction("Logout", "Account");
+					}
+					else
+					{
+						return RedirectToAction("Entrance", "Account");
+					}
+					
 				}
 			}
 			return RedirectToAction("Index", "Home");
@@ -157,7 +166,7 @@ namespace MVC_Project.Controllers
 				IdentityResult result = await UserManager.UpdateAsync(user);
 				if (result.Succeeded)
 				{
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("Entrance", "Account");
 				}
 				else
 				{

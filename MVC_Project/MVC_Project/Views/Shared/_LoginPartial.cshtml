@@ -7,7 +7,12 @@
 
     <ul class="nav navbar-nav navbar-right">
 		<li>
-			@Html.ActionLink("Роли", "Index", "Roles", routeValues: null, htmlAttributes: new { title = "Manage" })
+			@if (@User.IsInRole("Admin"))
+			{
+				@Html.ActionLink("Роли", "Index", "Roles", routeValues: null, htmlAttributes: new { title = "Manage" })
+			}
+			else
+			{ }
 		</li>
         <li>
             @Html.ActionLink("Привет " + User.Identity.GetUserName() + "!", "Entrance", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
