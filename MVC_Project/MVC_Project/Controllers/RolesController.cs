@@ -17,6 +17,7 @@ public class RolesController : Controller
 			return HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
 		}
 	}
+
 	[Authorize(Roles = "Admin")]
 	public ActionResult Index()
 	{
@@ -27,6 +28,7 @@ public class RolesController : Controller
 	{
 		return View();
 	}
+
 	[HttpPost]
 	public async Task<ActionResult> Create(CreateRoleModel model)
 	{
