@@ -42,14 +42,12 @@ namespace MVC_Project.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				//ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
 				ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
-
-				    UserManager.AddToRole(user.Id, "Admin");
-					return RedirectToAction("Login", "Account"); 
+					await UserManager.AddToRoleAsync(user.Id, "User");
+					return RedirectToAction("Login", "Account");
 				}
 				else
 				{
@@ -123,8 +121,7 @@ namespace MVC_Project.Controllers
 		[HttpPost]
 		[ActionName("Delete")]
 		public async Task<ActionResult> DeleteConfirmed(string id, string name)
-		{			
-
+		{
 			ApplicationUser user = await UserManager.FindByIdAsync(id);
 			if (user != null)
 			{

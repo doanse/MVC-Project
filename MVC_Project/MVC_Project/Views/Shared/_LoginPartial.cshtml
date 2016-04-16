@@ -11,8 +11,6 @@
 			{
 				@Html.ActionLink("Роли", "Index", "Roles", routeValues: null, htmlAttributes: new { title = "Manage" })
 			}
-			else
-			{ }
 		</li>
         <li>
             @Html.ActionLink("Привет " + User.Identity.GetUserName() + "!", "Entrance", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
