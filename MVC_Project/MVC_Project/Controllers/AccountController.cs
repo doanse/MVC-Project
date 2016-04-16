@@ -48,7 +48,7 @@ namespace MVC_Project.Controllers
 				if (result.Succeeded)
 				{
 
-				    UserManager.AddToRole(user.Id, "Admin");
+				    UserManager.AddToRole(user.Id, "User");
 					return RedirectToAction("Login", "Account"); 
 				}
 				else
