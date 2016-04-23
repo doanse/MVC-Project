@@ -44,6 +44,7 @@ namespace MVC_Project.Controllers
 			{
 				ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
 				IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+				
 				if (result.Succeeded)
 				{
 					await UserManager.AddToRoleAsync(user.Id, "User");
@@ -59,6 +60,17 @@ namespace MVC_Project.Controllers
 			}
 			return View(model);
 		}
+
+		//[AllowAnonymous]
+		//public async Task<ActionResult> ConfirmEmail(string userId, string code)
+		//{
+		//	if (userId == null || code == null)
+		//	{
+		//		return View("Error");
+		//	}
+		//	var result = await UserManager.ConfirmEmailAsync(userId, code);
+		//	return View(result.Succeeded ? "ConfirmEmail" : "Error");
+		//}
 
 		//АУТЕНТИФИКАЦИЯ
 		private IAuthenticationManager AuthenticationManager
@@ -102,6 +114,67 @@ namespace MVC_Project.Controllers
 			}
 			ViewBag.returnUrl = returnUrl;
 			return View(model);
+		}
+
+		public ActionResult PasswordReset()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> PasswordReset(string email)
+		{
+			string message = "";
+			ApplicationUser user = await UserManager.FindByEmailAsync(email);
+			if (user != null)
+			{
+				// генерируем токен для подтверждения регистрации
+				var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+				// создаем ссылку для подтверждения
+				var callbackUrl = Url.Action("PasswordReplace", "Account", new { userId = user.Id, code = code },
+						   protocol: Request.Url.Scheme);
+				//// отправка письма
+				await UserManager.SendEmailAsync(user.Id, "Замена пароля",
+						   "Для того чтобы сменить свой пароль перейдите по <a href=\""
+														   + callbackUrl + "\">ссылке.</a>");
+				message = "На почту отправлено письмо с подтверждением";
+
+				ViewData["Message"] = message;
+				// сообщение отправлено
+				return View("DisplayEmail");
+			}
+			else
+			{
+				// мыло указано неверно
+				return View();
+			}
+		}
+
+		public ActionResult PasswordReplace()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> PasswordReplace(RegisterModel model)
+		{
+			string message = "";
+			ApplicationUser user = await UserManager.FindByEmailAsync(model.Email);
+			if (user != null)
+			{
+				IdentityResult result = await UserManager.RemovePasswordAsync(user.Id);
+				if (result.Succeeded)
+				{
+					IdentityResult addresult = await UserManager.AddPasswordAsync(user.Id, model.Password);
+					message = "Пароль изменён";
+				}
+				else
+				{
+					message = "При изменении пароля возникли проблемы, попробуйте восстановить пароль снова";
+				}
+			}
+			ViewData["Message"] = message;
+			return View("DisplayEmail");
 		}
 
 		//ВЫЙТИ
