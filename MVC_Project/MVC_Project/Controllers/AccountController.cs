@@ -23,12 +23,10 @@ namespace MVC_Project.Controllers
 			}
 		}
 
-		// вытаскиваю пользователей
-		//[Authorize(Roles = "Admin")]
+		// вытаскиваю пользователей		
 		[HttpGet]
 		public ActionResult Entrance()
-		{
-			//IEnumerable<UserData> users = db.Users.Select(x => new UserData {Email = x.Email, Password = x.PasswordHash, Year = x.Year });
+		{			
 			return View(UserManager.Users);
 		}
 
@@ -60,17 +58,7 @@ namespace MVC_Project.Controllers
 			}
 			return View(model);
 		}
-
-		//[AllowAnonymous]
-		//public async Task<ActionResult> ConfirmEmail(string userId, string code)
-		//{
-		//	if (userId == null || code == null)
-		//	{
-		//		return View("Error");
-		//	}
-		//	var result = await UserManager.ConfirmEmailAsync(userId, code);
-		//	return View(result.Succeeded ? "ConfirmEmail" : "Error");
-		//}
+		
 
 		//АУТЕНТИФИКАЦИЯ
 		private IAuthenticationManager AuthenticationManager
@@ -116,6 +104,7 @@ namespace MVC_Project.Controllers
 			return View(model);
 		}
 
+		//ЗАБЫЛИ ПАРОЛЬ
 		public ActionResult PasswordReset()
 		{
 			return View();
@@ -144,10 +133,12 @@ namespace MVC_Project.Controllers
 				return View("DisplayEmail");
 			}
 			else
-			{
+			{	
 				// мыло указано неверно
+				ModelState.AddModelError("", "Пользователь с указанной почтой не найден");
 				return View();
 			}
+			
 		}
 
 		public ActionResult PasswordReplace()

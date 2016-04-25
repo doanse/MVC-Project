@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Login";
-	Layout = null;
+	//Layout = null;
 }
 
 <!DOCTYPE html>
@@ -13,10 +13,10 @@
 	<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/loginStyle.css")" />
 </head>
 <body>
+	@Html.ValidationSummary(false)
 	@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "permit-form" }))
 	{
-		@Html.AntiForgeryToken()
-
+		@Html.AntiForgeryToken()		
 		<div>
 			<input type="text" name="Email" placeholder="Логин" />
 			<div class="icon person-img"></div>

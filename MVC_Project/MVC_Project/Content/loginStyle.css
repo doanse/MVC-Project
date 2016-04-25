@@ -61,13 +61,13 @@
 	
 	border: 1px solid #adaaaa;
 	border-radius: 4px;
-	background: linear-gradient(to bottom, #6d648d, #524865);
+	background: linear-gradient(to bottom, #262339, #14121d);
 	color: #f8f8f8;
 }
 
 	.permit-form button:hover {
 		border: 1px solid #8c7fa9;
-		background: linear-gradient(to bottom, #857eae, #686087);
+		background: linear-gradient(to bottom, rgb(17, 82, 101), rgb(24, 100, 133));
 	}
 
 .permit-form div {
@@ -86,7 +86,7 @@
 	line-height: 30px;
 
 	text-decoration: none;
-	color: #56a8ef;
+	color: #265a98;
 
 	font-weight: bold;
 	font-size: 13px;
