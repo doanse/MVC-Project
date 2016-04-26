@@ -141,8 +141,14 @@ namespace MVC_Project.Controllers
 			
 		}
 
-		public ActionResult PasswordReplace()
+		public async Task<ActionResult> PasswordReplace(string userId)
 		{
+			ApplicationUser user = await UserManager.FindByIdAsync(userId);
+			if (user != null)
+			{
+				RegisterModel model = new RegisterModel { Email = user.Email };
+				return View(model);
+			}
 			return View();
 		}
 
