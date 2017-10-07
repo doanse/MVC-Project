@@ -6,6 +6,7 @@ using System.Web;
 
 namespace MVC_Project.Models
 {
+	//Test 3
 	//Test 2
 	//Test souceTree
 	//КЛАСС КОНТЕКСТА ДАННЫХ (ОН НУЖЕН ДЛЯ СВЯЗИ С БАЗОЙ)
